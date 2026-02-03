@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modul Ajar & Bank Soal</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; }
+    header { background: #1e40af; color: white; padding: 16px; }
+    main { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .card { background: white; padding: 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    h2 { margin-top: 0; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, textarea, select { width: 100%; padding: 8px; margin-top: 4px; }
+    button { margin-top: 12px; padding: 10px; background: #1e40af; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #1e3a8a; }
+    .output { white-space: pre-wrap; background: #f1f5f9; padding: 10px; margin-top: 10px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Web Pembuatan Modul Ajar & Soal</h1>
+  </header>
+
+  <main>
+    <!-- Modul Ajar -->
+    <div class="card">
+      <h2>Buat Modul Ajar</h2>
+      <label>Mata Pelajaran</label>
+      <input id="mapel" />
+
+      <label>Kelas / Fase</label>
+      <input id="kelas" />
+
+      <label>Tujuan Pembelajaran</label>
+      <textarea id="tujuan"></textarea>
+
+      <label>Materi</label>
+      <textarea id="materi"></textarea>
+
+      <label>Langkah Pembelajaran</label>
+      <textarea id="langkah"></textarea>
+
+      <button onclick="buatModul()">Generate Modul</button>
+
+      <div id="hasilModul" class="output"></div>
+    </div>
+
+    <!-- Soal -->
+    <div class="card">
+      <h2>Buat Soal</h2>
+      <label>Jenis Soal</label>
+      <select id="jenis">
+        <option>Pilihan Ganda</option>
+        <option>Esai</option>
+      </select>
+
+      <label>Materi Soal</label>
+      <textarea id="materiSoal"></textarea>
+
+      <label>Jumlah Soal</label>
+      <input type="number" id="jumlah" value="5" />
+
+      <button onclick="buatSoal()">Generate Soal</button>
+
+      <div id="hasilSoal" class="output"></div>
+    </div>
+  </main>
+
+  <script>
+    function buatModul() {
+      const text = `MODUL AJAR\n\nMata Pelajaran: ${mapel.value}\nKelas/Fase: ${kelas.value}\n\nTujuan Pembelajaran:\n${tujuan.value}\n\nMateri:\n${materi.value}\n\nLangkah Pembelajaran:\n${langkah.value}`;
+      hasilModul.textContent = text;
+    }
+
+    function buatSoal() {
+      let output = `SOAL (${jenis.value})\n\nMateri: ${materiSoal.value}\n\n`;
+      for (let i = 1; i <= jumlah.value; i++) {
+        output += i + '. .............................................\n';
+      }
+      hasilSoal.textContent = output;
+    }
+  </script>
+</body>
+</html>
